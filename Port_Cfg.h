@@ -40,14 +40,14 @@
 #define PORT_SET_PIN_MODE_API                (STD_ON)
 
 /* Number of the configured Port Pins */
-#define PORT_CONFIGURED_PINS                 (43U)
+#define PORT_CONFIGURED_PINS                 (39U)
 
 /* Number of the configured Ports */
 #define PORT_CONFIGURED_PORTS			     (6U)
 
 /* Channel Index in the array of structures in Port_PBcfg.c */
-#define PortConf_LED1_CHANNEL_ID_INDEX        (39U)     /* (PF1) */
-#define PortConf_SW1_CHANNEL_ID_INDEX         (42U)     /* (PF4) */
+#define PortConf_LED1_CHANNEL_ID_INDEX        (1U)     /* (PF1) */
+#define PortConf_SW1_CHANNEL_ID_INDEX         (4U)     /* (PF4) */
 
 
 #endif  /* PORT_CFG_H_ */

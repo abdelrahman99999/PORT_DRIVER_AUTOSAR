@@ -42,6 +42,13 @@ STATIC uint8 Port_Status = PORT_NOT_INITIALIZED;
  ************************************************************************************/
 void Port_Init(const Port_ConfigType* ConfigPtr){
     boolean error = FALSE;
+    uint8 Port_ClockPorts_flags[PORT_CONFIGURED_PORTS]={FALSE};
+
+    /* intialize Port_Pins pointer to point to configured_pins[0] */
+    Port_Pins=ConfigPtr->pins;
+    volatile uint32 * Port_Base_Address_Ptr = NULL_PTR; /* point to the required Port Registers base address */
+    volatile uint32 delay = 0;
+    Port_PinType counter;
 #if (PORT_DEV_ERROR_DETECT == STD_ON)
     if(NULL_PTR == ConfigPtr){
 
@@ -56,16 +63,11 @@ void Port_Init(const Port_ConfigType* ConfigPtr){
     }
 
 #endif
-    uint8 Port_ClockPorts_flags[PORT_CONFIGURED_PORTS]={FALSE};
 
-    /* intialize Port_Pins pointer to point to configured_pins[0] */
-    Port_Pins=ConfigPtr->pins;
-    volatile uint32 * Port_Base_Address_Ptr = NULL_PTR; /* point to the required Port Registers base address */
-    volatile uint32 delay = 0;
 
     if(FALSE == error){
 
-        Port_PinType counter;
+        
         for(counter = 0 ; counter < PORT_CONFIGURED_PINS ; counter++){
 
             /* get base address */
@@ -106,6 +108,7 @@ void Port_Init(const Port_ConfigType* ConfigPtr){
                 else if( (Port_Pins[counter].port_num == PORT_PORTC_ID) && (Port_Pins[counter].pin_num <= PORT_PIN3_ID) ) /* PC0 to PC3 */
                 {
                     /* Do Nothing ...  this is the JTAG pins */
+                    
                 }
                 else
                 {
@@ -183,6 +186,7 @@ void Port_Init(const Port_ConfigType* ConfigPtr){
                 {
                 /* Do Nothing */
                 }
+
                 
         }
         Port_Status = PORT_INITIALIZED;
@@ -211,6 +215,7 @@ void Port_Init(const Port_ConfigType* ConfigPtr){
 void Port_SetPinDirection(Port_PinType Pin,Port_PinDirectionType Direction){
 
 	boolean error = FALSE;
+     volatile uint32 * Port_Base_Address_Ptr = NULL_PTR; /* point to the required Port Registers base address */
 #if (PORT_DEV_ERROR_DETECT == STD_ON)
 
 	if(PORT_NOT_INITIALIZED == Port_Status){
@@ -244,7 +249,7 @@ void Port_SetPinDirection(Port_PinType Pin,Port_PinDirectionType Direction){
 	}
 
 #endif
-    volatile uint32 * Port_Base_Address_Ptr = NULL_PTR; /* point to the required Port Registers base address */
+   
     if(FALSE == error){
         switch(Port_Pins[Pin].port_num)
         {
@@ -292,6 +297,7 @@ void Port_SetPinDirection(Port_PinType Pin,Port_PinDirectionType Direction){
  ************************************************************************************/
 void Port_RefreshPortDirection(void){
 	boolean error = FALSE;
+    volatile uint32 * Port_Base_Address_Ptr = NULL_PTR; /* point to the required Port Registers base address */
 #if (PORT_DEV_ERROR_DETECT == STD_ON)
 
 	if(PORT_NOT_INITIALIZED == Port_Status){
@@ -305,7 +311,7 @@ void Port_RefreshPortDirection(void){
 	}
 
 #endif
-    volatile uint32 * Port_Base_Address_Ptr = NULL_PTR; /* point to the required Port Registers base address */
+    
     if(FALSE == error){
         Port_PinType counter;
         for(counter = 0 ; counter < PORT_CONFIGURED_PINS ; counter++){
@@ -419,6 +425,7 @@ void Port_GetVersionInfo(Std_VersionInfoType* versioninfo){
 #if (PORT_SET_PIN_MODE_API==STD_ON)
 void Port_SetPinMode(Port_PinType Pin,Port_PinModeType Mode){
 	boolean error = FALSE;
+    volatile uint32 * Port_Base_Address_Ptr = NULL_PTR; /* point to the required Port Registers base address */
 #if (PORT_DEV_ERROR_DETECT == STD_ON)
 
 	if(PORT_NOT_INITIALIZED == Port_Status){
@@ -461,7 +468,7 @@ void Port_SetPinMode(Port_PinType Pin,Port_PinModeType Mode){
 	}
 
 #endif
-    volatile uint32 * Port_Base_Address_Ptr = NULL_PTR; /* point to the required Port Registers base address */
+    
     if(FALSE == error){
         switch(Port_Pins[Pin].port_num)
         {

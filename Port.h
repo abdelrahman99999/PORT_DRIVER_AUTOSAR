@@ -182,37 +182,37 @@ typedef uint8 Port_PinModeType;
 /*Enum to hold PIN direction */
 typedef enum
 {
-    PORT_PIN_IN,
-    PORT_PIN_OUT
+    PORT_PIN_IN=0,
+    PORT_PIN_OUT=1
 }Port_PinDirectionType;
 
 /* Enum to hold internal resistor type for PIN */
 typedef enum
 {
-    PORT_RESISTOR_OFF,
-    PORT_RESISTOR_PULL_UP,
-    PORT_RESISTOR_PULL_DOWN
+    PORT_RESISTOR_OFF=0,
+    PORT_RESISTOR_PULL_UP=1,
+    PORT_RESISTOR_PULL_DOWN=2
 }Port_InternalResistorType;
 
 /* Enum to indicate if pin direction is changeable or not  */
 typedef enum
 {
-    PORT_PIN_DIRECTION_UNCHANGEABLE,
-    PORT_PIN_DIRECTION_CHANGEABLE
+    PORT_PIN_DIRECTION_UNCHANGEABLE=0,
+    PORT_PIN_DIRECTION_CHANGEABLE=1
 }PORT_PinDirectionChangeabilityType;
 
 /* Enum to indicate if pin mode is changeable or not  */
 typedef enum
 {
-	PORT_PIN_MODE_UNCHANGEABLE ,
-	PORT_PIN_MODE_CHANGEABLE
+	PORT_PIN_MODE_UNCHANGEABLE=0 ,
+	PORT_PIN_MODE_CHANGEABLE=1
 }Port_PinModeChangeabilityType;
 
 /* low/high for output pins */
 typedef enum
 {
-	PORT_PIN_LEVEL_LOW ,
-	PORT_PIN_LEVEL_HIGH
+	PORT_PIN_LEVEL_LOW =0,
+	PORT_PIN_LEVEL_HIGH=1
 }Port_PinLevelValueType;
 
 
